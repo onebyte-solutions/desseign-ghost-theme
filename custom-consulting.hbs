@@ -1,0 +1,143 @@
+{{!< default}} <div class="consulting-page">
+    <div class="consulting-page">
+        <h1>Consulting Services</h1>
+        <p class="intro-text">
+            We provide expert SQL Server consulting services tailored to your business needs. Our team of certified
+            specialists helps optimize performance, enhance security, and ensure seamless database operations.
+        </p>
+
+        <ul class="service-list">
+            <li class="service-item">
+                <i class="fas fa-heartbeat"></i>
+                <h2>SQL Server Health Check</h2>
+                <p>Analyze your SQL Server environment for performance, security, and reliability. We provide detailed
+                    reports and actionable steps to keep your databases healthy.</p>
+            </li>
+            <li class="service-item">
+                <i class="fas fa-tools"></i>
+                <h2>Database Quick Fix</h2>
+                <p>Resolve critical database issues fast. Our experts quickly diagnose problems and implement effective
+                    solutions to get your system back on track.</p>
+            </li>
+            <li class="service-item">
+                <i class="fas fa-calendar-alt"></i>
+                <h2>Monthly DBA Support</h2>
+                <p>Enjoy ongoing database administration and support. We’ll monitor your environment, perform regular
+                    maintenance, and keep everything running smoothly.</p>
+            </li>
+            <li class="service-item">
+                <i class="fas fa-exchange-alt"></i>
+                <h2>SQL Server Migration Advice</h2>
+                <p>Plan and execute seamless migrations with minimal downtime. We’ll help you transition to the latest
+                    SQL Server platforms confidently.</p>
+            </li>
+        </ul>
+
+        <div class="contact-button">
+            <a href="/contact" class="btn">Contact Us</a>
+        </div>
+    </div>
+
+    <style>
+        .consulting-page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .consulting-page h1 {
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+
+        .intro-text {
+            font-size: 1.125rem;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .service-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2rem;
+            justify-content: center;
+        }
+
+        .service-item {
+            background-color: var(--color-body);
+            border-radius: 6px;
+            padding: 2rem;
+            text-align: left;
+            flex: 1 1 calc(50% - 2rem);
+            /* 2 items per row on desktop, adjust as needed */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            min-width: 250px;
+            max-width: 400px;
+            margin: 0 auto;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Icons */
+        .service-item i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* Service titles */
+        .service-item h2 {
+            margin: 0 0 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Service descriptions */
+        .service-item p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Contact button */
+        .contact-button {
+            margin-top: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #555;
+        }
+
+        @media(max-width: 550px) {
+            .consulting-page h1 {
+                font-size: 2rem;
+            }
+
+            .consulting-page .intro-text {
+                font-size: 1rem;
+            }
+
+            .consulting-page {
+                padding: 2rem 0;
+            }
+        }
+    </style>

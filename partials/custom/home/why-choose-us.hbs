@@ -1,0 +1,113 @@
+<section class="why-choose-us wcu">
+    <div class="c-container">
+        <h2 class="section-title">Why Choose Us</h2>
+        <div class="features-container">
+            <div class="feature-item">
+                <div class="icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <h3>99.9% Uptime Strategies</h3>
+                <p>
+                    Our comprehensive monitoring, redundancy planning, and proactive maintenance protocols ensure your
+                    systems remain operational around the clock, minimizing costly downtime and business disruptions.
+                </p>
+            </div>
+
+            <div class="feature-item">
+                <div class="icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3>Immediate Performance Improvements</h3>
+                <p>
+                    Experience rapid enhancements to your database performance through our targeted optimization
+                    strategies, query tuning, and infrastructure refinements that deliver noticeable results from day
+                    one.
+                </p>
+            </div>
+
+            <div class="feature-item">
+                <div class="icon">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+                <h3>Cost-Effective Monthly DBA Support</h3>
+                <p>
+                    Access enterprise-level database administration at a fraction of the cost of in-house resources,
+                    with flexible support plans tailored to your exact business needs and budget constraints.
+                </p>
+            </div>
+
+            <div class="feature-item">
+                <div class="icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h3>20+ Years of SQL Server Expertise</h3>
+                <p>
+                    Benefit from our decades of specialized SQL Server knowledge spanning all versions and environments,
+                    ensuring your databases are managed by seasoned professionals who have seen and solved it all.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="kg-card kg-button-card">
+        <a href="/contact-us" class="kg-btn kg-btn-accent">Contact Us</a>
+    </div>
+</section>
+
+
+<style>
+    /* Features grid */
+    .features-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .feature-item {
+        background-color: var(--color-body);
+        padding: 1.5rem;
+        border-radius: var(--border-radius);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        text-align: left;
+    }
+
+    .feature-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .icon .fas {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .feature-item p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .kg-button-card {
+        margin-top: 1.5rem;
+        text-align: center;
+    }
+
+    .kg-btn {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        background-color: #333;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+
+    .kg-btn:hover {
+        background-color: #555;
+    }
+    @media(max-width: 550px){
+        .features-container{
+            grid-template-columns: auto;
+        }
+    }
+</style>

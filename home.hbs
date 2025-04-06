@@ -6,6 +6,8 @@
 </section>
 {{/post}}
 
+{{> custom/home/why-choose-us}}
+
 {{#get "posts" include="tags" filter="tag:hash-work" limit="2"}}
   {{#if posts}}
   <section class="portfolio-grid {{#match @custom.portfolio_size "Full-width"}}fullwidth{{else}}fixedwidth{{/match}}">
