@@ -1,0 +1,130 @@
+.post-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+  padding-top: 15px;
+
+  @include phone {
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+  }
+
+  &.is-default {
+    .post-image {
+      @include phone {
+        flex: 0 0 97%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+
+        .post-image-responsive {
+          width: 97%;
+          height: auto;
+          aspect-ratio: 1 / 1;
+          top: 20px;
+          left: 20px;
+        }
+      }
+    }
+  }
+
+  &.is-centered {
+    text-align: center;
+    flex-wrap: wrap;
+
+    .post-image {
+      flex: 0 0 100%;
+      order: 2;
+      height: 500px;
+      margin-right: 0;
+
+      @include phone {
+        height: 350px;
+        margin-bottom: 0;
+      }
+
+      .post-image-responsive {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        &.blurred {
+          display: none;
+        }
+      }
+    }
+
+    .post-meta {
+      margin-left: 0;
+      margin-bottom: 50px;
+      order: 1;
+      width: 100%;
+
+      @include phone {
+        margin-bottom: 30px;
+      }
+    }
+  }
+
+  &.is-imageless {
+    .post-meta {
+      flex: 0 0 100%;
+    }
+  }
+
+  .post-image {
+    height: 450px;
+    flex: 0 0 450px;
+    position: relative;
+    margin-right: 60px;
+
+    @include phone {
+      flex: 0 0 100%;
+      margin-right: 0;
+      margin-bottom: 30px;
+      width: 100%;
+    }
+
+    @include post-image(410px, 35px, 3px);
+  }
+
+  .post-tags {
+    a {
+      @include tag;
+    }
+  }
+
+  .post-meta {
+    flex-grow: 1;
+
+    @include phone {
+      flex: 0 0 100%;
+    }
+
+    .post-title {
+      font-size: 40px;
+      line-height: 56px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .post-author {
+      margin-bottom: 25px;
+      font-size: 18px;
+
+      a {
+        font-weight: bold;
+        border-bottom: none;
+      }
+    }
+
+    .post-info {
+      font-size: 15px;
+
+      .divider {
+        margin: 0 5px;
+      }
+    }
+  }
+}

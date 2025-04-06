@@ -1,0 +1,156 @@
+{
+  "name": "minim-custom",
+  "description": "A Multi-Purpose Portfolio And Blog Theme For Creatives",
+  "demo": "https://minim.layeredcraft.com",
+  "version": "1.1.0",
+  "engines": {
+    "ghost": ">=4.0.0"
+  },
+  "license": "MIT",
+  "screenshots": {
+    "desktop": "assets/screenshot-desktop.jpg",
+    "mobile": "assets/screenshot-mobile.jpg"
+  },
+  "scripts": {
+    "dev": "gulp",
+    "zip": "gulp zip",
+    "test": "gscan .",
+    "test:ci": "gscan --fatal --verbose ."
+  },
+  "author": {
+    "name": "LayeredCraft",
+    "email": "hello@layeredcraft.com",
+    "url": "https://layeredcraft.com"
+  },
+  "gpm": {
+    "type": "theme",
+    "categories": [
+      "Minimal",
+      "Portfolio"
+    ]
+  },
+  "keywords": [
+    "ghost",
+    "theme",
+    "ghost-theme"
+  ],
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.7.2",
+    "animate.css": "^4.1.0",
+    "clipboard": "^2.0.11",
+    "fitvids.1.1.0": "^1.1.0",
+    "infinite-scroll": "^4.0.1",
+    "jquery": "^3.5.1",
+    "medium-zoom": "^1.0.6",
+    "slick-carousel": "^1.8.1"
+  },
+  "devDependencies": {
+    "beeper": "2.0.0",
+    "concat": "^1.0.3",
+    "ghost-theme-translator": "^1.0.2",
+    "gscan": "4.34.0",
+    "gulp": "4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "2.6.1",
+    "gulp-livereload": "4.0.2",
+    "gulp-plumber": "^1.2.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-size": "^4.0.1",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-terser": "^2.1.0",
+    "gulp-zip": "5.1.0",
+    "lunr": "^2.3.6",
+    "lunr-languages": "^1.1.0",
+    "prismjs": "^1.16.0",
+    "sass": "^1.54.3"
+  },
+  "browserslist": [
+    "defaults"
+  ],
+  "config": {
+    "posts_per_page": 5,
+    "card_assets": {
+      "exclude": [
+        "bookmark",
+        "gallery"
+      ]
+    },
+    "image_sizes": {
+      "xs": {
+        "width": 100
+      },
+      "s": {
+        "width": 300
+      },
+      "m": {
+        "width": 600
+      },
+      "l": {
+        "width": 1400
+      },
+      "xl": {
+        "width": 2000
+      }
+    },
+    "custom": {
+      "color_scheme": {
+        "type": "select",
+        "options": [
+          "Light",
+          "Dark",
+          "Auto"
+        ],
+        "default": "Light"
+      },
+      "show_dark_mode_switch": {
+        "type": "boolean",
+        "default": false
+      },
+      "portfolio_layout": {
+        "type": "select",
+        "options": [
+          "Masonry",
+          "Grid"
+        ],
+        "default": "Masonry",
+        "group": "homepage"
+      },
+      "portfolio_size": {
+        "type": "select",
+        "options": [
+          "Full-width",
+          "Fixed-width"
+        ],
+        "default": "Full-width",
+        "group": "homepage"
+      },
+      "testimonial_size": {
+        "type": "select",
+        "options": [
+          "Full-width",
+          "Fixed-width"
+        ],
+        "default": "Full-width",
+        "group": "homepage"
+      },
+      "show_portfolio_filter": {
+        "type": "boolean",
+        "default": true,
+        "group": "homepage"
+      },
+      "disqus_shortname": {
+        "type": "text",
+        "group": "post"
+      },
+      "footer_copyright": {
+        "type": "text"
+      },
+      "disable_footer_ghost_link": {
+        "type": "boolean",
+        "default": false
+      }
+    }
+  }
+}

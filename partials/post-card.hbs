@@ -1,0 +1,9 @@
+{{#if @first}}
+	{{#if highlight_first}}
+		{{> "post-card-featured"}}
+	{{else}}
+		{{> "post-card-default" portfolio=portfolio}}
+	{{/if}}
+{{else}}
+	{{> "post-card-default" portfolio=portfolio}}
+{{/if}}

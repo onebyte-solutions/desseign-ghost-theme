@@ -1,0 +1,73 @@
+{{!< default}}
+<section class="page-content is-tag">
+	{{#tag}}
+		<header class="header">
+			<div class="site-container">
+				{{#if feature_image}}
+				<div class="profile-image">
+					<img src="{{feature_image}}" loading="lazy" alt="{{name}}">
+				</div>
+				{{/if}}
+
+				<h1>{{name}}</h1>
+
+				<ul class="author-links">
+					{{#get "posts" filter="tag:{{slug}}+tag:-hash-portfolio+tag:-hash-testimonial" include="authors"}}
+						{{#if posts}}
+							<li>
+								<i class="fa fa-newspaper"></i>
+								{{posts.length}}
+								{{plural posts.length empty=(t "No posts") singular=(t "post") plural=(t "posts")}}
+							</li>
+							{{/if}}
+					{{/get}}
+					{{#get "posts" filter="tag:{{slug}}+tag:hash-portfolio" include="authors"}}
+						{{#if posts}}
+							<li>
+								<i class="fa fa-briefcase"></i>
+								{{posts.length}}
+								{{plural posts.length empty=(t "No portolio items") singular=(t "portolio item") plural=(t "portolio items")}}
+							</li>
+							{{/if}}
+					{{/get}}
+				</ul>
+
+				{{#if description}}
+					<p class="page-excerpt">{{description}}</p>
+				{{/if}}
+			</div>
+		</header>
+	{{/tag}}
+
+	{{#get "posts" filter="tag:{{tag.slug}}+tag:-hash-portfolio+tag:-hash-testimonial" include="authors"}}
+		{{#if posts}}
+		<div class="content">
+			<div class="post-content">
+				<h2>{{t "Posts"}}</h2>
+				<div class="post-grid">
+					{{#foreach posts}}
+						{{> "post-card"}}
+					{{/foreach}}
+				</div>
+			</div>
+		</div>
+		{{/if}}
+	{{/get}}
+
+	{{#get "posts" filter="tag:{{tag.slug}}+tag:hash-portfolio" include="authors"}}
+		{{#if posts}}
+		<div class="content">
+			<div class="post-content">
+				<h2>{{t "Portfolio Items"}}</h2>
+				<div class="post-grid">
+					{{#foreach posts}}
+						{{> "post-card" portfolio=true}}
+					{{/foreach}}
+				</div>
+			</div>
+		</div>
+		{{/if}}
+	{{/get}}
+</section>
+
+

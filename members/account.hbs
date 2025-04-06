@@ -1,0 +1,115 @@
+{{!< ../default}}
+
+<div class="page-content account-content">
+  <div class="account-avatar">
+    {{#if @member.avatar_image}}
+      <img src="{{@member.avatar_image}}" />
+    {{else}}
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <g fill="#777777" fill-rule="evenodd">
+          <path
+            d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z"
+            fill="#FFF" />
+        </g>
+      </svg>
+    {{/if}}
+  </div>
+
+  {{#if @member.paid}}
+    <header>
+      <h1>
+        {{#if @member.name}}
+          {{@member.name}}
+        {{else}}
+          {{t "Your account"}}
+        {{/if}}
+      </h1>
+      <p class="page-excerpt">{{t "You are currently a paying subscriber with full access to all site areas."}} {{t "View your membership details or update your billing info below."}}</p>
+    </header>
+
+    {{#foreach @member.subscriptions}}
+      <div class="subscriber-details">
+        <div class="subscriber-detail-column one">
+          <div>
+            <label class="heading">{{t "Email Address"}}</label>
+            <span class="subscriber-content">{{@member.email}}</span>
+          </div>
+          <div>
+            <label class="heading">{{t "Your Plan"}}</label>
+            <span class="subscriber-content">{{plan.nickname}} — {{price plan currency=currency}}/{{plan.interval}}</span>
+          </div>
+        </div>
+        <div class="subscriber-detail-column two">
+          <div>
+            <label class="heading">{{t "Card"}}</label>
+            <span class="subscriber-content">**** **** **** {{default_payment_card_last4}}</span>
+          </div>
+          <div>
+            <label class="heading">
+              {{#if cancel_at_period_end}}
+              {{t "Expires"}}
+              {{else}}
+              {{t "Next Bill Date"}}
+              {{/if}}
+            </label>
+            <span class="subscriber-content">{{date current_period_end format="DD MMM YYYY"}}</span>
+          </div>
+        </div>
+        <a href="#" class="subscriber-detail-billing" data-members-edit-billing>
+          {{t "Edit billing info"}} <span>&rarr;</span>
+        </a>
+      </div>
+
+      <div class="subscriber-cancel">
+        {{cancel_link class="subscriber-cancel-button" errorClass="subscriber-cancel-error" cancelLabel=(t "Cancel subscription") continueLabel=(t "Continue subscription")}}
+      </div>
+
+      {{#get "posts" limit="4" filter="visibility:[paid,tiers]" include="authors,tags,tiers" as |paid-posts|}}
+        {{#if paid-posts}}
+          <div class="post-content subscriber-posts">
+            <hr/>
+            <h4>The latest subscriber-only posts</h4>
+            <div class="post-grid">
+              {{#foreach paid-posts visibility="paid,tiers"}}
+                {{> "post-card"}}
+              {{/foreach}}
+            </div>
+          </div>
+        {{/if}}
+      {{/get}}
+    {{/foreach}}
+  {{else if @member}}
+    <header>
+      <h1>
+        {{#if @member.name}}
+          {{@member.name}}
+        {{else}}
+          {{t "Your account"}}
+        {{/if}}
+      </h1>
+      <p class="page-excerpt">{{t "You are not currently a paid subscriber."}}</p>
+
+      <p>{{t "Upgrade to a paid plan below to unlock full access and other exclusive content."}}</p>
+    </header>
+
+    <div class="subscriber-details">
+      <div class="subscriber-detail-column one">
+        <div>
+          <label class="heading">{{t "Email Address"}}</label>
+          <span class="subscriber-content">{{@member.email}}</span>
+        </div>
+      </div>
+      <div class="subscriber-detail-column two">
+        <div>
+          <label class="heading">{{t "Your Plan"}}</label>
+          <span class="subscriber-content">{{t "Free"}}</span>
+        </div>
+      </div>
+    </div>
+
+    {{> "membership-plans"}}
+  {{else}}
+    {{!-- Not logged in: Redirect to signin --}}
+    <script>window.location = '{{@site.url}}/signin/';</script>
+  {{/if}}
+</div>

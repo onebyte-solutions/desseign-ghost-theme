@@ -1,0 +1,24 @@
+<div class="author-card">
+	{{#if profile_image}}
+		<div class="author-image">
+			<a href="{{url}}">
+				<img src="{{profile_image}}" loading="lazy" alt="{{name}}">
+			</a>
+		</div>
+	{{/if}}
+	<div class="author-info">
+		<h2><a href="{{url}}">{{name}}</a></h2>
+		<div class="author-meta">
+			{{#if location}}
+				{{t "from"}} {{location}} <span class="divider">•</span>
+			{{/if}}
+			<span class="author-post-count">
+				{{count.posts}}
+				{{plural count.posts empty=(t "No posts") singular=(t "post") plural=(t "posts")}}
+			</span>
+			{{#if bio}}
+				<p>{{bio}}</p>
+			{{/if}}
+		</div>
+	</div>
+</div>

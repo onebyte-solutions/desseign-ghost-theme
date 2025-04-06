@@ -1,0 +1,26 @@
+{{!< default}}
+
+<section class="page-content">
+	{{#post}}
+		<header class="header">
+			<h1>{{title}}</h1>
+			{{#if custom_excerpt}}
+				<p class="page-excerpt">{{custom_excerpt}}</p>
+			{{/if}}
+		</header>
+	{{/post}}
+
+	<div class="content">
+		<div class="post-content">
+		{{#get "tags" limit="all" include="count.posts" order="count.posts desc"}}
+			<div class="tag-grid">
+				{{#foreach tags}}
+					{{> "tag-card"}}
+				{{/foreach}}
+			</div>
+		{{/get}}
+		</div>
+	</div>
+</section>
+
+

@@ -1,0 +1,26 @@
+{{!< default}}
+
+{{#post}}
+<section class="page-content memberships">
+  <header class="header">
+    <h1>{{title}}</h1>
+    {{#if custom_excerpt}}
+      <p class="page-excerpt">{{custom_excerpt}}</p>
+    {{/if}}
+  </header>
+
+  <div class="content">
+    {{> "membership-plans" include-free="true"}}
+
+    {{^if @member}}
+    <div class="membership-footer">
+      {{t "Already have an account?"}} <a href="{{@site.url}}/signin/">{{t "Sign in"}}</a>
+    </div>
+    {{/if}}
+  </div>
+
+  <div class="post-content">
+    {{content}}
+  </div>
+</section>
+{{/post}}

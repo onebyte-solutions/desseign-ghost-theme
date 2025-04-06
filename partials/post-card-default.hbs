@@ -1,0 +1,42 @@
+<div class="post-card">
+	<div class="header">
+		{{#if feature_image}}
+			<a href="{{url}}" class="post-image">
+				{{> "feature-image" feature_image=feature_image class="post-image-responsive"}}
+				{{> "feature-image" feature_image=feature_image class="post-image-responsive blurred"}}
+			</a>
+		{{/if}}
+
+		<div class="post-info">
+			{{#if featured}}<span class="featured"><i class="fa fa-fire"></i> Featured</span>{{/if}}
+			<h3><a href="{{url}}">{{title}}</a></h3>
+			<div class="post-meta">
+				{{#unless access}}
+					{{^has visibility="public"}}
+						<span class="post-access">
+							<i class="fa fa-lock"></i>
+						</span>
+					{{/has}}
+				{{/unless}}
+				{{^if portfolio}}
+					<time class="post-date" datetime="{{date format="YYYY-MM-DD"}}">{{date published_at format="LL"}}</time>
+				{{/if}}
+				{{#if reading_time}}
+					{{^if portfolio}}
+						<span class="divider">•</span>
+					{{/if}}
+					{{reading_time}}
+				{{/if}}
+			</div>
+		</div>
+	</div>
+	{{#if excerpt}}
+		{{^if portfolio}}
+			<div class="content">
+				<p>
+					{{excerpt characters="130"}}...
+				</p>
+			</div>
+		{{/if}}
+	{{/if}}
+</div>

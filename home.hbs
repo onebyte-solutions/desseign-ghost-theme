@@ -1,0 +1,81 @@
+{{!< default}}
+
+{{#post}}
+<section class="post-content hero">
+  {{content}}
+</section>
+{{/post}}
+
+{{#get "posts" include="tags" filter="tag:hash-work" limit="2"}}
+  {{#if posts}}
+  <section class="portfolio-grid {{#match @custom.portfolio_size "Full-width"}}fullwidth{{else}}fixedwidth{{/match}}">
+    <div class="site-container no-padding">
+  <h2>Latest projects</h2>
+      {{#if @custom.show_portfolio_filter}}
+      <ul class="portfolio-tag-filter">
+        <li><a href="javascript:;" data-tag="all" class="active">All</a></li>
+      </ul>
+      {{/if}}
+    </div>
+    <div class="portfolio-items {{#match @custom.portfolio_layout "Masonry"}}masonry{{else}}grid{{/match}}">
+      {{#foreach posts}}
+        {{#if feature_image}}
+          <a
+          href="{{url}}"
+          style="background-image: url('{{feature_image}}');"
+          class="portfolio-item"
+          data-tags="{{tags separator=',' autolink='false'}}"
+          >
+            <h3><span>{{title}}</span></h3>
+          </a>
+        {{/if}}
+      {{/foreach}}
+    </div>
+  </section>
+  {{/if}}
+{{/get}}
+
+{{#get "posts" include="tags" filter="tag:hash-blog" limit="2"}}
+  {{#if posts}}
+  <section class="portfolio-grid {{#match @custom.portfolio_size "Full-width"}}fullwidth{{else}}fixedwidth{{/match}}">
+    <div class="site-container no-padding">
+      <h2>Latest posts</h2>
+      {{#if @custom.show_portfolio_filter}}
+      <ul class="portfolio-tag-filter">
+        <li><a href="javascript:;" data-tag="all" class="active">All</a></li>
+      </ul>
+      {{/if}}
+    </div>
+    <div class="portfolio-items {{#match @custom.portfolio_layout "Masonry"}}masonry{{else}}grid{{/match}}">
+      {{#foreach posts}}
+        {{#if feature_image}}
+          <a
+          href="{{url}}"
+          style="background-image: url('{{feature_image}}');"
+          class="portfolio-item"
+          data-tags="{{tags separator=',' autolink='false'}}"
+          >
+            <h3><span>{{title}}</span></h3>
+          </a>
+        {{/if}}
+      {{/foreach}}
+    </div>
+  </section>
+  {{/if}}
+{{/get}}
+
+{{!-- {{#get "posts" filter="tag:hash-testimonial" limit="all"}}
+  {{#if posts}}
+  <section class="testimonials-slider {{#match @custom.testimonial_size "Full-width"}}fullwidth{{else}}fixedwidth{{/match}}">
+    <div class="scroller">
+      {{#foreach posts}}
+      <div class="testimonial">
+        <p>{{excerpt}}</p>
+        <img src="{{feature_image}}" class="photo" />
+        <div class="author">{{title}}</div>
+      </div>
+      {{/foreach}}
+    </div>
+  </section>
+  {{/if}}
+{{/get}} --}}

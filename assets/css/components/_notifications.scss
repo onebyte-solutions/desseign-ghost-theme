@@ -1,0 +1,89 @@
+.notification {
+  display: none;
+  margin: 0 auto;
+  padding: 10px 0;
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.5em;
+  font-weight: 500;
+  text-align: center;
+  background: #21ba75;
+  position: relative;
+
+  b {
+    color: #fff;
+  }
+}
+
+.members-form.success .notification-success {
+  display: block;
+}
+
+.members-form.error .notification-error {
+  background: #ba2143;
+  display: block;
+}
+
+.subscribe-success .notification-subscribe {
+  display: block;
+}
+
+.signup-success .notification-signup {
+  display: block;
+}
+
+.signin-success .notification-signin {
+  display: block;
+}
+
+.checkout-success .notification-checkout {
+  display: block;
+}
+
+.billing-success .notification-billing-update {
+  display: block;
+}
+
+.billing-cancel .notification-billing-update-cancel {
+  display: block;
+  background: #ba2143;
+}
+
+.notification.closed {
+  display: none;
+}
+
+.notification-close {
+  position: absolute;
+  top: -8px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+}
+
+.notification-close:before {
+  content: "";
+  position: absolute;
+  top: 29px;
+  right: 25px;
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transform: rotate(45deg);
+}
+
+.notification-close:after {
+  content: "";
+  position: absolute;
+  top: 29px;
+  right: 25px;
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transform: rotate(-45deg);
+}

@@ -1,0 +1,147 @@
+.account-content {
+  .account-avatar {
+    text-align: center;
+
+    img,
+    svg {
+      width: 115px;
+      height: 115px;
+      border-radius: 100%;
+      padding: 8px;
+      background: var(--color-highlight);
+    }
+
+    img {
+      object-fit: cover;
+      object-position: top;
+    }
+  }
+
+  header {
+    text-align: center;
+    max-width: 620px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+  }
+
+  .membership-plans-wrap {
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+  }
+
+  .subscriber-details {
+    margin: 30px 0 30px 0;
+    padding: 20px 30px 30px 30px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-border);
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 620px;
+    margin: 0 auto 80px auto;
+  }
+
+  .subscriber-detail-column {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    -ms-flex-preferred-size: 30%;
+    flex-basis: 30%;
+  }
+
+  .subscriber-detail-column.one {
+    min-width: 300px;
+    -webkit-box-flex: 50;
+    -ms-flex-positive: 50;
+    flex-grow: 50;
+  }
+
+  .subscriber-detail-column.two {
+    min-width: 230px;
+    -webkit-box-flex: 999;
+    -ms-flex-positive: 999;
+    flex-grow: 999;
+  }
+
+  .subscriber-detail-column > div {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 15px 30px 15px 0;
+  }
+
+  .heading {
+    display: block;
+    width: 100%;
+    font-size: 15px;
+    color: #999;
+    margin-bottom: 5px;
+  }
+
+  .subscriber-content {
+    font-size: 18px;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 5px;
+  }
+
+  .subscriber-cancel {
+    text-align: center;
+    margin-top: -40px;
+  }
+
+  .subscriber-cancel-button {
+    display: inline-block;
+    padding: 25px 20px;
+    font-size: 14px;
+    background: #ba2143 !important;
+    color: #fff;
+    padding: 13px 20px;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: var(--border-radius);
+
+    &:after {
+      display: none !important;
+    }
+  }
+
+  .subscriber-cancel-error {
+    font-size: 11px;
+    display: none;
+    max-width: 240px;
+    margin-top: 20px;
+    letter-spacing: .5px;
+  }
+
+  .subscriber-cancel-button.error + .subscriber-cancel-error {
+    display: block;
+    color: #ba2143;
+  }
+
+  .subscriber-detail-billing {
+    font-size: 14px;
+    width: 100%;
+    margin-top: 20px;
+    text-align: left;
+    color: #999 !important;
+
+    &:after {
+      display: none !important;
+    }
+  }
+
+  .subscriber-detail-billing span {
+    display: inline-block;
+    -webkit-transition: -webkit-transform .2s ease;
+    transition: -webkit-transform .2s ease;
+    transition: transform .2s ease;
+    transition: transform .2s ease, -webkit-transform .2s ease;
+  }
+
+  .subscriber-detail-billing:hover span {
+    -webkit-transform: translateX(3px);
+    transform: translateX(3px);
+  }
+
+  .subscriber-posts {
+    margin-top: 60px;
+  }
+}

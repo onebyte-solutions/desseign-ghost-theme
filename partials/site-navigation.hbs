@@ -1,0 +1,40 @@
+<ul class="nav" role="menu">
+  {{navigation}}
+
+  {{!-- {{#if @site.members_enabled}}
+  <li class="nav-account nav-dropdown">
+    <a href="javascript:" class="account-menu-avatar" id="account-menu" type="checkbox" name="menu">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <g fill="#777777" fill-rule="evenodd">
+          <path
+            d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z"
+            fill="#FFF" />
+        </g>
+      </svg>
+      {{#if @member.avatar_image}}
+        <img src="{{@member.avatar_image}}" />
+      {{/if}}
+    </a>
+    {{#if @member}}
+      <ul class="sub-nav">
+        <li class="account-info">
+          <small>{{t "Signed in as"}}</small>
+          <h3 class="account-email" title="{{@member.email}}">{{@member.email}}</h3>
+        </li>
+        <li><a href="{{@site.url}}/account/">{{t "Account"}}</a></li>
+        <li><a href="#signout" data-members-signout>{{t "Sign out"}}</a></li>
+      </ul>
+    {{else}}
+      <ul class="sub-nav">
+        <li class="nav-membership"><a class="signin-link" href="{{@site.url}}/signin/">{{t "Sign in"}}</a></li>
+        <li class="nav-membership"><a class="signup-link" href="{{@site.url}}/signup/">{{t "Sign up"}}</a></li>
+      </ul>
+    {{/if}}
+  </li>
+  {{/if}} --}}
+
+  <li class="nav-search" role="menuitem">
+    <a href="javascript:;" data-ghost-search><i class="fas fa-search"></i>
+      <span>{{t "Search"}}</span></a>
+  </li>
+</ul>

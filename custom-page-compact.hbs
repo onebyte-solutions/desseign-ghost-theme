@@ -1,0 +1,18 @@
+{{!< default}}
+
+{{#post}}
+<section class="page-content compact">
+  <header class="header">
+    <h1>{{title}}</h1>
+    {{#if custom_excerpt}}
+      <p class="page-excerpt">{{custom_excerpt}}</p>
+    {{/if}}
+  </header>
+
+  <div class="content">
+    <div class="post-content">
+      {{content}}
+    </div>
+  </div>
+</section>
+{{/post}}

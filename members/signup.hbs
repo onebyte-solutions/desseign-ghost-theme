@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}">
+<head>
+    {{!-- Document Settings --}}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    {{!-- Base Meta --}}
+    <title>{{meta_title}}</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {{!-- Stylesheets --}}
+    <link rel="stylesheet" href="{{asset "built/styles.min.css"}}">
+
+    {{!-- This tag outputs SEO meta+structured data and other important settings --}}
+    {{ghost_head}}
+</head>
+<body class="{{body_class}}" data-theme="{{@custom.color_scheme}}">
+
+  <section class="auth">
+    {{#if @site.cover_image}}
+      <div class="cover-image {{#unless @site.cover_image}} no-image{{/unless}}" style="background-image: url({{@site.cover_image}})"></div>
+    {{/if}}
+
+    <div class="content">
+      {{#if @member}}
+          {{!-- Logged in, paying member: Redirect home --}}
+          <script>window.location = '{{@site.url}}';</script>
+      {{else}}
+      <a href="{{@site.url}}" class="site-logo">
+        {{#if @site.logo}}
+          <img src="{{@site.logo}}" alt="{{@site.title}}" />
+        {{else}}
+          <span>{{@site.title}}</span>
+        {{/if}}
+      </a>
+
+      <div class="inner">
+        <h1>Sign up for {{@site.title}}</h1>
+        <form class="members-form" data-members-form="signup">
+          <div class="notification notification-success"><b>{{t "Great!"}}</b> {{t "Check your inbox and click the link to confirm your subscription"}}</div>
+          <div class="notification notification-error">{{t "Please enter a valid email address!"}}</div>
+
+          <label>Email address</label>
+          <p>
+            <input data-members-email type="email" required="true" autocomplete="false" />
+          </p>
+          <input type="submit" value="{{t "Continue"}}" />
+        </form>
+        <small class="members-question">{{t "Already have an account?"}} <a href="{{@site.url}}/signin/">{{t "Sign in"}}</a></small>
+      </div>
+
+      <div class="bottom-link">
+        <a href="{{@site.url}}">&larr; Back to homepage</a>
+      </div>
+      {{/if}}
+    </div>
+  </section>
+
+  <script src="{{asset "built/scripts.min.js"}}"></script>
+
+  {{!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. --}}
+  {{{block "scripts"}}}
+
+  {{!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag --}}
+  {{ghost_foot}}
+</body>
+</html>

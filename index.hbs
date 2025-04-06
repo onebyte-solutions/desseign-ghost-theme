@@ -1,0 +1,19 @@
+{{!< default}}
+
+<section class="page-content">
+	<div class="content">
+		<div class="post-content">
+			<div class="post-grid">
+				{{#foreach posts}}
+					{{#match ../pagination.page 1}}
+						{{> "post-card" highlight_first=true}}
+					{{else}}
+						{{> "post-card" highlight_first=false}}
+					{{/match}}
+				{{/foreach}}
+			</div>
+
+			{{pagination}}
+		</div>
+	</div>
+</section>

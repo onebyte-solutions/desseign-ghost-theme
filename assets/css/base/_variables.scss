@@ -1,0 +1,73 @@
+/* Breakpoints */
+$desktop-wide: 1200px;
+$desktop-wider: 1400px;
+$desktop-extended: 1600px;
+$tablet-landscape: 1024px;
+$tablet: 768px;
+$phone: 576px;
+
+:root {
+  /* Fonts */
+  --font-family-primary: "DM Sans", sans-serif;
+  --font-family-secondary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+
+  /* Globals */
+  --max-width-global-wrap: 1100px;
+  --max-width-compact-wrap: 850px;
+  --border-radius: 3px;
+  --height-logo-header: 40px;
+  --font-size-logo-header: 40px;
+  --height-logo-footer: 40px;
+  --font-size-logo-footer: 40px;
+  --grid-gap-portfolio-fullwidth: 1px;
+  --grid-gap-portfolio-fixedwidth: 15px;
+  --grid-gap-authors: 35px;
+  --grid-gap-tags: 35px;
+
+  /* Colors */
+  --color-font-default: #2b2b2b;
+  --color-font-secondary: #777777;
+  --color-link-underline: #dfdfdf;
+  --color-body: #fff;
+  --color-highlight: #efeef0;
+  --color-dropdown-bg: #ffffff;
+  --color-dropdown-shadow: rgba(39, 44, 49, 0.12) 0 2px 26px,
+    rgba(39, 44, 49, 0.1) 1px 3px 8px;
+  --color-code-bg: #f1f4f4;
+  --color-input-bg: #f5f5f5;
+  --color-input-bg-hover: #ebebeb;
+  --color-border: #eaeaea;
+  --color-tag: #ecedee;
+  --color-tag-hover: #e5e6e8;
+}
+
+@mixin theme($dark-theme: true) {
+  @if $dark-theme {
+    /* Colors */
+    --color-font-default: #ffffff;
+    --color-font-secondary: #a3b0bd;
+    --color-link-underline: #dfdfdf;
+    --color-body: #182029;
+    --color-highlight: #293340;
+    --color-dropdown-bg: #1f2934;
+    --color-dropdown-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    --color-code-bg: #293340;
+    --color-input-bg: #293340;
+    --color-input-bg-hover: #344253;
+    --color-border: #323b45;
+    --color-tag: #293340;
+    --color-tag-hover: #344253;
+  }
+}
+
+[data-theme="Dark"] {
+  @include theme($dark-theme: true);
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="Auto"] {
+    @include theme($dark-theme: true);
+  }
+}

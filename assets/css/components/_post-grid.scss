@@ -1,0 +1,19 @@
+.post-grid {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+
+	.post-card {
+		flex: 0 0 47%;
+		margin-bottom: 60px;
+
+		@include phone {
+			flex: 0 0 100%;
+			margin-bottom: 40px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+}

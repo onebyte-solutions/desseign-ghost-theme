@@ -1,0 +1,117 @@
+.page-content {
+  &.is-author,
+  &.is-tag {
+    header {
+      padding-bottom: 40px;
+      margin-bottom: 40px;
+      border-bottom: 1px solid var(--color-border);
+
+      .site-container {
+        max-width: 60%;
+        margin: 0 auto;
+      }
+
+      @include phone {
+        max-width: none;
+      }
+
+      .author-links {
+        list-style: none;
+        margin: 35px 0 0 0;
+        padding: 0;
+
+        @include phone {
+          margin-top: 20px;
+        }
+
+        li {
+          display: inline-block;
+          margin-right: 25px;
+          line-height: 35px;
+
+          &:last-child {
+            margin-right: 0;
+          }
+
+          i {
+            margin-right: 5px;
+          }
+
+          a {
+            @include link-underline;
+
+            text-decoration: none;
+
+            &:hover {
+              text-decoration: underline;
+              color: var(--color-font-default);
+            }
+          }
+        }
+      }
+    }
+
+    .post-content {
+      margin-bottom: 20px;
+    }
+  }
+
+  header {
+    text-align: center;
+    padding: 30px 0 80px 0;
+
+    @include phone {
+      padding: 15px 0 40px 0;
+    }
+
+    .profile-image {
+      margin-bottom: 25px;
+
+      img {
+        width: 115px;
+        height: 115px;
+        border-radius: 100%;
+        padding: 8px;
+        background: var(--color-highlight);
+        object-fit: cover;
+
+        @include phone {
+          width: 90px;
+          height: 90px;
+        }
+      }
+    }
+
+    h1 {
+      font-size: 45px;
+      margin: 0;
+
+      @include phone {
+        font-size: 38px;
+      }
+    }
+
+    .page-excerpt {
+      padding-top: 15px;
+      margin-bottom: 0;
+      font-size: 18px;
+      line-height: 34px;
+
+      @include phone {
+        padding-top: 0;
+      }
+    }
+  }
+
+  &.error {
+    text-align: center;
+
+    header {
+      padding-bottom: 40px;
+
+      h1 {
+        font-size: 80px;
+      }
+    }
+  }
+}

@@ -1,0 +1,110 @@
+@mixin phone {
+  @media only screen and (max-width: $phone) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media only screen and (max-width: $tablet) {
+    @content;
+  }
+}
+
+@mixin tablet-landscape {
+  @media only screen and (max-width: $tablet-landscape) {
+    @content;
+  }
+}
+
+@mixin desktop-wide {
+  @media only screen and (min-width: $desktop-wide) {
+    @content;
+  }
+}
+
+@mixin desktop-wider {
+  @media only screen and (min-width: $desktop-wider) {
+    @content;
+  }
+}
+
+@mixin desktop-extended {
+  @media only screen and (min-width: $desktop-extended) {
+    @content;
+  }
+}
+
+@mixin fullwidth {
+  left: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  max-width: 100vw;
+  position: relative;
+  right: 50%;
+  width: 100vw;
+}
+
+@mixin link-underline($color: var(--color-link-underline), $hover-color: var(--ghost-accent-color)) {
+  text-decoration: underline;
+  transition: color 300ms;
+  color: var(--color-font-default);
+  font-weight: 500;
+
+  &:hover {
+    color: $hover-color;
+  }
+}
+
+@mixin button {
+  border: none;
+  background: var(--ghost-accent-color);
+  border-radius: var(--border-radius);
+  color: #fff;
+  padding: 15px 25px;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+@mixin tag {
+  border: none;
+  border-radius: var(--border-radius);
+  background: var(--color-tag);
+  color: var(--color-font-secondary);
+  font-size: 13px;
+  padding: 6px 10px;
+  margin-right: 5px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 300ms;
+
+  &:hover {
+    background: var(--color-tag-hover);
+  }
+}
+
+@mixin post-image($size: 120px, $offset: 12px, $blur: 2px) {
+  .post-image-responsive {
+    background-size: cover;
+    background-position: center center;
+    height: $size;
+    width: $size;
+    position: absolute;
+    top: $offset;
+    left: $offset;
+    border-radius: var(--border-radius);
+    display: block;
+    object-fit: cover;
+    z-index: 2;
+
+    &.blurred {
+      top: 0;
+      left: 0;
+      filter: blur($blur);
+      overflow: hidden;
+      opacity: 0.2;
+      z-index: 1;
+    }
+  }
+}

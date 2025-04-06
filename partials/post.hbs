@@ -1,0 +1,73 @@
+<article id="{{id}}" class="post {{post_class}}">
+  <div class="post-content">
+    <div class="post-header {{#match layout "centered"}}is-centered{{else}}is-default{{/match}} {{#unless feature_image}}compact is-imageless{{/unless}}">
+      {{#if feature_image}}
+        <div class="post-image">
+          {{> "feature-image" feature_image=feature_image class="post-image-responsive"}}
+          {{> "feature-image" feature_image=feature_image class="post-image-responsive blurred"}}
+        </div>
+      {{/if}}
+
+      <div class="post-meta">
+        {{#if tags}}<div class="post-tags">{{tags limit="all" separator=" "}}</div>{{/if}}
+        <h1 class="post-title">{{title}}</h1>
+        <div class="post-author">{{t "by"}} {{authors separator=", "}}</div>
+        <div class="post-info">
+          <time class="post-date" datetime="{{date format="YYYY-MM-DD"}}">{{date published_at format="LL"}}</time>
+          <span class="divider">•</span> {{reading_time}}
+        </div>
+      </div>
+    </div>
+
+    <div class="compact">
+      {{#if custom_excerpt}}
+        <p class="post-custom-excerpt">{{custom_excerpt}}</p>
+      {{/if}}
+
+      {{content}}
+    </div>
+  </div>
+</article>
+
+<section class="post-share-links">
+  <h3>{{t "Share This Post"}}</h3>
+
+  {{> "share-links"}}
+</section>
+
+{{> "comments"}}
+
+<nav class="post-nav">
+  {{#get "posts" filter="slug:-{{slug}}+published_at:<='{{published_at}}'+tag:-hash-portfolio+tag:-hash-testimonial" order="published_at desc" limit="1" include="authors"}}
+    {{#foreach posts}}
+      <a href="{{url}}" class="post-nav-link previous">
+        {{#if feature_image}}
+          <div class="post-image">
+            {{> "feature-image" feature_image=feature_image class="post-image-responsive"}}
+            {{> "feature-image" feature_image=feature_image class="post-image-responsive blurred"}}
+          </div>
+        {{/if}}
+        <div class="post-nav-link-text">
+          <span>{{t "Previous"}}</span>
+          {{title}}
+        </div>
+      </a>
+    {{/foreach}}
+  {{/get}}
+  {{#get "posts" filter="slug:-{{slug}}+published_at:>'{{published_at}}'+tag:-hash-portfolio+tag:-hash-testimonial" order="published_at asc" limit="1" include="authors"}}
+    {{#foreach posts}}
+      <a href="{{url}}" class="post-nav-link next">
+        <div class="post-nav-link-text">
+          <span>{{t "Next"}}</span>
+          {{title}}
+        </div>
+        {{#if feature_image}}
+          <div class="post-image">
+            {{> "feature-image" feature_image=feature_image class="post-image-responsive"}}
+            {{> "feature-image" feature_image=feature_image class="post-image-responsive blurred"}}
+          </div>
+        {{/if}}
+      </a>
+    {{/foreach}}
+  {{/get}}
+</nav>

@@ -1,0 +1,15 @@
+{{#if isSecondary}}
+  <ul class="nav-secondary">
+    {{#foreach navigation}}
+      <li class="{{link_class for=(url) class=(concat "nav-" slug)}}" role="menuitem">
+        <a href="{{url absolute="true"}}" target="_blank"><i class="fab fa-{{label}}"></i></a>
+      </li>
+    {{/foreach}}
+  </ul>
+{{else}}
+  {{#foreach navigation}}
+    <li class="{{link_class for=(url) class=(concat "nav-" slug)}}" role="menuitem">
+      <a href="{{url absolute="true"}}">{{label}}</a>
+    </li>
+  {{/foreach}}
+{{/if}}

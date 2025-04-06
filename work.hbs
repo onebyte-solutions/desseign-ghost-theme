@@ -1,0 +1,25 @@
+{{!< default}}
+
+{{#page}}
+<section class="post-content hero">
+    <h1>{{title}}</h1>
+    <p>{{excerpt}}</p>
+</section>
+{{/page}}
+
+{{#get "posts" include="tags" filter="tag:hash-work" limit="all"}}
+{{#if posts}}
+<section class="portfolio-grid {{#match @custom.portfolio_size "Full-width"}}fullwidth{{else}}fixedwidth{{/match}}">
+    <div class="portfolio-items {{#match @custom.portfolio_layout "Masonry"}}masonry{{else}}grid{{/match}}">
+        {{#foreach posts}}
+        {{#if feature_image}}
+        <a href="{{url}}" style="background-image: url('{{feature_image}}');" class="portfolio-item"
+            data-tags="{{tags separator=',' autolink='false'}}">
+            <h3><span>{{title}}</span></h3>
+        </a>
+        {{/if}}
+        {{/foreach}}
+    </div>
+</section>
+{{/if}}
+{{/get}}

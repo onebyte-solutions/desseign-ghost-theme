@@ -1,0 +1,64 @@
+{{!< default}}
+{{#author}}
+<section class="page-content is-author">
+		<header class="header">
+			<div class="site-container">
+				{{#if profile_image}}
+				<div class="profile-image">
+					<img src="{{profile_image}}" loading="lazy" alt="{{name}}">
+				</div>
+				{{/if}}
+
+				<h1>{{name}}</h1>
+
+				<ul class="author-links">
+					{{#if location}}
+						<li><i class="fa fa-location-dot"></i> {{location}}</li>
+					{{/if}}
+					{{#if website}}
+						<li><a href="{{website}}" aria-label="{{name}} website"><i class="fa fa-link"></i> {{t "Website"}}</a></li>
+					{{/if}}
+					{{#if facebook}}
+						<li><a href="{{facebook_url}}" aria-label="{{name}} Facebook"><i class="fab fa-facebook"></i> {{t "Facebook"}}</a></li>
+					{{/if}}
+					{{#if twitter}}
+						<li><a href="{{twitter_url}}" aria-label="{{name}} Twitter"><i class="fab fa-twitter"></i> {{t "Twitter"}}</a></li>
+					{{/if}}
+				</ul>
+
+				{{#if bio}}
+					<p class="page-excerpt">{{bio}}</p>
+				{{/if}}
+			</div>
+		</header>
+
+	{{#get "posts" filter="authors:[{{slug}}]+tag:-hash-portfolio+tag:-hash-testimonial" include="authors"}}
+		{{#if posts}}
+		<div class="content">
+			<div class="post-content">
+				<div class="post-grid">
+					{{#foreach posts}}
+						{{> "post-card"}}
+					{{/foreach}}
+				</div>
+			</div>
+		</div>
+		{{/if}}
+	{{/get}}
+
+	{{#get "posts" filter="authors:[{{slug}}]+tag:hash-portfolio" include="authors"}}
+		{{#if posts}}
+		<div class="content">
+			<div class="post-content">
+				<h2>{{t "Portfolio Items"}}</h2>
+				<div class="post-grid">
+					{{#foreach posts}}
+						{{> "post-card" portfolio=true}}
+					{{/foreach}}
+				</div>
+			</div>
+		</div>
+		{{/if}}
+	{{/get}}
+</section>
+{{/author}}

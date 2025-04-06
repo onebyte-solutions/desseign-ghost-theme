@@ -1,0 +1,27 @@
+<nav class="share-links">
+  <ul class="social-links">
+      <li class="social-link tippy" data-tippy-content="{{t "Share on Twitter"}}">
+        <a href="https://twitter.com/share?text={{encode title}}&amp;url={{url absolute="true"}}"
+        onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+      <li class="social-link tippy" data-tippy-content="{{t "Share on Facebook"}}">
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}"
+        onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+      <li class="social-link tippy" data-tippy-content="{{t "Share via Email"}}">
+        <a href="mailto:?subject={{ encode title }}&body={{ url absolute='true' }}">
+          <i class="far fa-envelope"></i>
+        </a>
+      </li>
+      <li class="social-link tippy js-share__link--clipboard" data-tippy-content="{{t "Copy to clipboard"}}">
+        <a href="javascript:;">
+          <i class="fas fa-link"></i>
+        </a>
+      </li>
+  </ul>
+  <div class="copy-success">&check; {{t "The link has been copied!"}}</div>
+</nav>

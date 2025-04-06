@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}">
+<head>
+    {{!-- Document Settings --}}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    {{!-- Base Meta --}}
+    <title>{{meta_title}}</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {{!-- Stylesheets --}}
+    <link rel="stylesheet" href="{{asset "built/styles.min.css"}}">
+
+    {{!-- This tag outputs SEO meta+structured data and other important settings --}}
+    {{ghost_head}}
+</head>
+<body class="{{body_class}}" data-theme="{{@custom.color_scheme}}">
+  {{#if @custom.show_dark_mode_switch}}
+    <div class="color-scheme">
+      {{#match @custom.color_scheme "=" "Dark"}}
+        <i class="fa fa-sun toggle-dark-mode"></i>
+      {{else}}
+        <i class="fa fa-moon toggle-dark-mode"></i>
+      {{/match}}
+    </div>
+  {{else}}
+    <script>
+      window.localStorage.removeItem('theme');
+    </script>
+  {{/if}}
+
+  <div class="main-container">
+    <header class="site-header site-container {{#if @custom.show_dark_mode_switch}}has-color-switcher{{/if}}">
+      <nav class="site-nav container">
+        <a href="{{@site.url}}" class="site-logo">
+          {{#if @site.logo}}
+            <img src="{{@site.logo}}" alt="{{@site.title}}" />
+          {{else}}
+            <span>{{@site.title}}</span>
+          {{/if}}
+        </a>
+
+        <div class="mobile-menu">
+          <i class="fas fa-search" data-ghost-search></i>
+          <span class="nav-toggle">{{t "Menu"}} <i class="fas fa-chevron-down"></i></span>
+        </div>
+
+        {{> "site-navigation"}}
+      </nav>
+    </header>
+
+    <main class="site-container">
+      {{!-- All the main content gets inserted here, index.hbs, post.hbs, etc --}}
+      {{{body}}}
+    </main>
+  </div>
+
+  <footer>
+    <div class="site-container">
+      <div class="column">
+        {{!-- <a href="{{@site.url}}" class="site-logo">
+          {{#if @site.logo}}
+            <img src="{{@site.logo}}" alt="{{@site.title}}" />
+          {{else}}
+            <span>{{@site.title}}</span>
+          {{/if}}
+        </a> --}}
+        <p class="copyright">
+          {{#if @custom.footer_copyright}}
+            {{@custom.footer_copyright}}
+          {{else}}
+            &copy; {{date format="YYYY"}}
+          {{/if}}
+
+          {{#unless @custom.disable_footer_ghost_link}}
+            {{t "Published with"}} <a href="https://layeredcraft.com/ghost" target="_blank">Ghost</a> & <a href="https://minim.layeredcraft.com" target="_blank">Minim</a>.
+          {{/unless}}
+        </p>
+        <ul class="privacy-policy">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms and conditions</a></li>
+        </ul>
+      </div>
+
+      <div class="column">
+        {{#if @site.secondary_navigation}}
+          {{navigation type="secondary"}}
+        {{/if}}
+      </div>
+    </div>
+  </footer>
+
+  <script src="{{asset "built/scripts.min.js"}}"></script>
+
+  {{!-- The #block helper will pull in data from the #contentFor other template files. --}}
+  {{{block "scripts"}}}
+
+  {{!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag --}}
+  {{ghost_foot}}
+</body>
+</html>

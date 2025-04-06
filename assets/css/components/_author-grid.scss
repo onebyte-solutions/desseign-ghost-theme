@@ -1,0 +1,17 @@
+.author-grid {
+	display: grid;
+	width: 100%;
+	gap: var(--grid-gap-authors);
+	grid-auto-columns: 1fr;
+	grid-gap: var(--grid-gap-authors);
+	will-change: transform;
+	grid-template-columns: repeat(5,1fr);
+
+	@include tablet {
+		grid-template-columns: repeat(3,1fr);
+	}
+
+	@include phone {
+		grid-template-columns: repeat(2,1fr);
+	}
+}

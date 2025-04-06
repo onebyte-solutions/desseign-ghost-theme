@@ -1,0 +1,23 @@
+routes:
+  /:
+    data: page.home
+    template: home
+
+  /signup/: members/signup
+  /signin/: members/signin
+  /account/: members/account
+
+collections:
+  /work/:
+    permalink: /work/{slug}/
+    template: work
+    filter: "tag:hash-work"
+    data: page.work
+  /blog/:
+    permalink: /blog/{slug}/
+    template: index
+    filter: "tag:-hash-work+tag:-hash-testimonial"
+
+taxonomies:
+  tag: /tag/{slug}/
+  author: /author/{slug}/
