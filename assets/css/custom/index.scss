@@ -1,47 +1,52 @@
 // sticky menu
 .site-header.site-container {
-    position: sticky;
-    top: -30px;
-    background-color: var(--color-body);
-    padding-bottom: 10px;
-    z-index: 999;
+	position: sticky;
+	top: -30px;
+	background-color: var(--color-body);
+	padding-bottom: 10px;
+	z-index: 999;
 }
 
-.color-scheme{
-    position: fixed;
+.color-scheme {
+	position: fixed;
 }
 
 // footer
 
 .privacy-policy {
-    list-style: none;
-    display: flex;
-    column-gap: 20px;
-    padding-left: 0;
+	list-style: none;
+	display: flex;
+	column-gap: 20px;
+	padding-left: 0;
 }
 
-.privacy-policy a{
-    color: var(--color-font-primary);
-    font-size: 14px;
+.privacy-policy a {
+	color: var(--color-font-primary);
+	font-size: 14px;
 }
 
-.custom-nav-icon{
-    height: 20px;
-    width: 20px;
-    margin-top: 5px;
-    transition: all 0.3s;
+.custom-nav-icon {
+	height: 20px;
+	width: 20px;
+	margin-top: 5px;
+	transition: all 0.3s;
 }
-.custom-nav-icon:hover{
-    fill: var(--ghost-accent-color);
+.custom-nav-icon:hover {
+	fill: var(--ghost-accent-color);
 }
 
-@media(max-width:576px){
-    .privacy-policy {
-        justify-content: center;
-    }
+@media (max-width: 576px) {
+	.privacy-policy {
+		justify-content: center;
+	}
+}
+
+footer {
+	text-align: center;
+	margin-top: 4rem;
 }
 
 // why choose us sectoin
 .portfolio-grid {
-    margin-top: 80px;
+	margin-top: 80px;
 }
