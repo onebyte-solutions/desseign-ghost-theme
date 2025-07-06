@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Runners Weather - Your Personal Running Forecast</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #ff7b47 0%, #ff9a76 50%, #87ceeb 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+            z-index: 1;
+            position: relative;
+        }
+
+        .logo {
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 2rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .logo-placeholder {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: -0.02em;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero .subtitle {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .runner-silhouette {
+            position: absolute;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 200px;
+            height: 200px;
+            opacity: 0.6;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-50%) translateX(10px); }
+        }
+
+        .weather-icons {
+            position: absolute;
+            left: 10%;
+            top: 30%;
+            opacity: 0.4;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #2c3e50, #3498db);
+            color: white;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            border: 3px solid rgba(255,255,255,0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            background: linear-gradient(45deg, #34495e, #2980b9);
+        }
+
+        .screenshots {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            text-align: center;
+        }
+
+        .screenshots h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .screenshots p {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .screenshots-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .screenshot-placeholder {
+            width: 250px;
+            height: 500px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+            border: 8px solid #2c3e50;
+        }
+
+        .screenshot-placeholder:hover {
+            transform: translateY(-10px);
+        }
+
+        .screenshot-placeholder:nth-child(2) {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .screenshot-placeholder:nth-child(3) {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .features {
+            padding: 4rem 2rem;
+            background: white;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .feature-card p {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-tagline {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #ecf0f1;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #3498db;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: #34495e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: #3498db;
+            transform: translateY(-5px);
+        }
+
+        .download-btn {
+            height: 5rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .logo {
+                width: 100px;
+                height: 100px;
+                margin-bottom: 1.5rem;
+            }
+            
+            .runner-silhouette {
+                display: none;
+            }
+            
+            .weather-icons {
+                display: none;
+            }
+            
+            .screenshots-container {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .screenshot-placeholder {
+                width: 200px;
+                height: 400px;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .download-btn {
+                height: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="weather-icons">
+            {{!-- <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="30" r="15" fill="white"/>
+                <path d="M50 45L55 50L50 55L45 50Z" fill="white"/>
+                <path d="M50 60L55 65L50 70L45 65Z" fill="white"/>
+                <path d="M25 45C25 35 35 25 45 25C55 25 65 35 65 45C65 50 62 54 58 57H32C28 54 25 50 25 45Z" fill="white"/>
+            </svg> --}}
+        </div>
+        
+        <div class="hero-content">
+            <img class="logo" src="{{asset 'images/logo.jpeg'}}" alt="logo" >
+            <h1>Runners Weather</h1>
+            <p class="tagline">Your Personal Running Forecast</p>
+            <p class="subtitle">Run smarter. Feel better. Plan your runs around real conditions — not just the temperature.</p>
+            {{!-- <a href="#" class="cta-button">📲 Get Running Weather on App Store</a> --}}
+            <a href="/">
+                <img class="download-btn" src="{{asset 'images/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg'}}" alt="download button">
+            </a>
+        </div>
+        
+        <div class="runner-silhouette">
+            {{!-- <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M100 50C100 40 90 30 80 30C70 30 60 40 60 50C60 60 70 70 80 70C90 70 100 60 100 50Z" fill="rgba(0,0,0,0.8)"/>
+                <path d="M75 70L85 70L90 90L85 150L80 150L75 90Z" fill="rgba(0,0,0,0.8)"/>
+                <path d="M85 90L110 100L115 105L110 110L85 100Z" fill="rgba(0,0,0,0.8)"/>
+                <path d="M75 90L50 100L45 105L50 110L75 100Z" fill="rgba(0,0,0,0.8)"/>
+                <path d="M80 150L85 150L90 170L85 175L80 170Z" fill="rgba(0,0,0,0.8)"/>
+                <path d="M75 150L70 170L65 175L70 180L75 170Z" fill="rgba(0,0,0,0.8)"/>
+            </svg> --}}
+        </div>
+    </section>
+
+        <section class="features">
+        <h2>🏃‍♂️ Why Runners Love It</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🌡️</div>
+                <h3>Dew Point-Based Color Cues</h3>
+                <p>Instantly know if conditions are ideal, moderate, or risky for a run.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⏰</div>
+                <h3>Runner-Focused Hourly Forecasts</h3>
+                <p> 12-hour view with dew point, humidity, wind, and real feel.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💡</div>
+                <h3>Real-Time Run Recommendations</h3>
+                <p>Advice on when to run, what to wear, or when to skip.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Clean, Minimal iOS Design</h3>
+                <p>Lightning-fast and easy to read at a glance.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="screenshots">
+        <h2>📸 Sneak Peek</h2>
+        <p>Get a glimpse of the clean, intuitive interface designed specifically for runners</p>
+        <div class="screenshots-container">
+            <div class="screenshot-placeholder">
+                Main Dashboard<br>Screenshot<br>Goes Here
+            </div>
+            <div class="screenshot-placeholder">
+                Hourly Forecast<br>Screenshot<br>Goes Here
+            </div>
+            <div class="screenshot-placeholder">
+                Settings View<br>Screenshot<br>Goes Here
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-tagline">⚙️ Made by Runners, for Runners</p>
+            <p style="margin-bottom: 2rem; color: #bdc3c7;">Built by runners who know dew point > temperature. Running Weather helps you run your best—every day, in every season.</p>
+            
+            <div class="footer-links">
+                <a href="mailto:info@runnersweather.com">Support</a>
+                <a href="rw-privacy-policy">Privacy Policy</a>
+            </div>
+            
+            <div class="social-icons">
+                <a href="https://www.facebook.com/runnersweather/" target="_blank" aria-label="Facebook">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </a>
+                <a href="https://instagram.com/runnersweather" target="_blank" aria-label="Instagram">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+                <a href="https://x.com/runners_weather" target="_blank" aria-label="Twitter">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+                <a href="https://threads.net/@runnersweather" target="_blank" aria-label="Threads">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-.584-2.043-1.496-3.467-2.713-4.237-1.377-1.068-3.333-1.61-5.815-1.61-2.797 0-4.96.84-6.43 2.498C4.109 6.252 3.47 8.511 3.47 12.01c0 3.497.639 5.756 2.063 7.323 1.47 1.659 3.633 2.498 6.43 2.498 2.797 0 4.96-.84 6.43-2.498.832-.916 1.377-2.177 1.659-3.833h-4.46v-1.703h6.345c.058.456.087.94.087 1.436 0 2.83-.725 5.043-2.156 6.584-1.784 1.373-4.081 2.078-6.826 2.098z"/>
+                    </svg>
+                </a>
+            </div>
+            
+            <p style="color: #7f8c8d; font-size: 0.9rem;">© 2024 Runners Weather. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
