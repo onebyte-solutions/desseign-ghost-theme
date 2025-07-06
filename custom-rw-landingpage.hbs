@@ -173,7 +173,7 @@
             margin: 0 auto;
         }
 
-        .screenshot-placeholder {
+        .screenshot-frame {
             width: 250px;
             height: 500px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -190,15 +190,15 @@
             border: 8px solid #2c3e50;
         }
 
-        .screenshot-placeholder:hover {
+        .screenshot-frame:hover {
             transform: translateY(-10px);
         }
 
-        .screenshot-placeholder:nth-child(2) {
+        .screenshot-frame:nth-child(2) {
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
         }
 
-        .screenshot-placeholder:nth-child(3) {
+        .screenshot-frame:nth-child(3) {
             background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
         }
 
@@ -347,7 +347,7 @@
                 gap: 1.5rem;
             }
             
-            .screenshot-placeholder {
+            .screenshot-frame {
                 width: 200px;
                 height: 400px;
             }
@@ -427,13 +427,11 @@
         <h2>📸 Sneak Peek</h2>
         <p>Get a glimpse of the clean, intuitive interface designed specifically for runners</p>
         <div class="screenshots-container">
-            <div class="screenshot-placeholder">
-                Main Dashboard<br>Screenshot<br>Goes Here
-            </div>
-            <div class="screenshot-placeholder">
+            <img class="screenshot-frame" src="{{asset 'images/screenshot1.jpeg'}}" alt="">
+            <div class="screenshot-frame">
                 Hourly Forecast<br>Screenshot<br>Goes Here
             </div>
-            <div class="screenshot-placeholder">
+            <div class="screenshot-frame">
                 Settings View<br>Screenshot<br>Goes Here
             </div>
         </div>
